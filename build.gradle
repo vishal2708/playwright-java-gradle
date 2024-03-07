@@ -16,13 +16,29 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    playwrightDeps {
+        extendsFrom implementation
+    }
+}
+
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
+    testImplementation 'org.testng:testng:6.14.3'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation(playwrightDeps (fileTree("C:/Users/vishal_kumar4/Desktop/libs/playwrightjar/") {
+        // You can add as many include or exclude calls as you want
+        include("*.jar")
+    })) 
 }
+
+
+
 
 application {
     // Define the main class for the application.
@@ -31,5 +47,17 @@ application {
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+    //useJUnitPlatform()
+   
+    useTestNG()
+}
+
+task installPlaywrightDeps(type: JavaExec) {
+    group = 'Playwright'
+    description = "Install playwright dependencies for playwright"
+    classpath sourceSets.main.runtimeClasspath
+    main = "com.microsoft.playwright.CLI"
+    systemProperties System.getProperties()
+    args "install-deps"
+    classpath= configurations.playwrightDeps
 }

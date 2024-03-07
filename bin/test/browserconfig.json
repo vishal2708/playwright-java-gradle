@@ -1,0 +1,32 @@
+{
+    "browserEngine": "Playwright",
+    "recordVideo": "false",
+    "gridCaps": {
+        "launchOptions": {
+            "headless": false
+        },
+    "contextOptions": {
+        "acceptDownloads": true,
+        "bypassCSP": true,
+        "screenSize": {
+            "width": 1920,
+            "height": 1080
+        },
+        "viewportSize": {
+            "width": 1920,
+            "height": 1080
+        }
+    }
+    },
+    "chrome": {
+        "browserName": "chrome",
+        "browserVersion": "latest",
+        "userDataDir": "",
+        "launchOptions": {
+            "channel": "chrome"
+        },
+        "contextOptions": {
+            "acceptDownloads": true
+        }
+    }
+}
